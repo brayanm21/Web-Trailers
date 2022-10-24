@@ -1,0 +1,36 @@
+<ng-template #mymodal >
+          <div class="modal-body "
+            style="background-color: #292b2c;
+            color: white;">
+            <iframe style="width:100%; " height="400" allowfullscreen
+            >
+            </iframe>
+          </div>
+        </ng-template>
+       
+        
+
+  <div class="container">
+    
+    <div class="container justify-content-end">
+      <div class="alert bg-warning text-center" role="alert">
+        <strong>TENDENCIAS</strong>
+      </div>
+    </div>
+    
+    <div class="row row-cols-sm-2 row-cols-md-4 d-flex justify-content-end">
+      <div *ngFor="let Pelicula of dato" class="col-md animate__animated animate__pulse divPrincipal" [routerLink]="['/' ,tipo, Pelicula.id]">
+        <div class="card mb-3 bg-image hover-overlay hover-zoom hover-shadow"  id="divTransparente">
+          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{ Pelicula.poster_path }}" alt="..."  >
+          <p>
+          {{Pelicula.title}}{{Pelicula.name}}</p>
+            <div class="mask" id="mask">
+            </div>
+            <span class="position-absolute top-0 end-0 badge rounded-pill bg-primary bg-gradient">
+              {{Pelicula.release_date | slice:0:4}} {{Pelicula.first_air_date | slice:0:4}}
+            <span class="visually-hidden"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>

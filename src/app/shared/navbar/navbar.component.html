@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">NETFLIX</a>
+    <button class="navbar-toggler" (click)="openFirstFocus()">
+      <span class="fas fa-align-justify"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link"
+              [routerLink]="['/pelicula/pagina' , 1]"
+              routerLinkActive="active">Peliculas</a>
+        </li>
+
+        <li class="nav-item">
+          <a  class="nav-link"
+              [routerLink]="['/serie/pagina' , 1]"
+              routerLinkActive="active">Series</a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link disabled">Aleatorio</a>
+        </li>
+      </ul>
+
+      <form class="d-flex " role="search">
+        <input class="btn btn-outline-light ms me-2" type="search"  aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>

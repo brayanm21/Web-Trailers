@@ -1,0 +1,21 @@
+  <ngb-carousel
+    [interval]="2000">
+    <ng-template ngbSlide *ngFor="let tendencia of dato;">
+      <div class="picsum-img-wrapper bg-image" id="divPrincipal" 
+      style="background-image: url('https://www.themoviedb.org/t/p/original{{ tendencia.backdrop_path }}');">
+      <div class="mask" id="mask"></div>
+      </div>
+      <div class="carousel-caption animate__animated animate__fadeIn" >
+        <h1>{{ tendencia.title }}{{ tendencia.name }}</h1>
+        <span class="badge text-bg-warning">
+          {{tendencia.vote_average | number:"1.1-1"}}/10</span>
+        <p class="card-text padding: 50px">
+          {{ tendencia.overview | lowercase | slice:0:160}}...</p>
+        <button type="button" class="btn btn-light btn-sm" [routerLink]="['/' ,tipo, tendencia.id]" >
+          <img src="https://img.icons8.com/nolan/24/play-button-circled.png"/> VER</button>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+
+  

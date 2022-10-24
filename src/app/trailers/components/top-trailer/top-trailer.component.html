@@ -1,0 +1,23 @@
+    
+<div class="container">
+  
+    <div class="alert bg-warning text-center" role="alert">
+      <strong>MEJORES PUNTUADOS</strong>
+  </div>
+    
+
+    <div *ngFor="let Pelicula of dato" class="d-flex position-relative hover-overlay hover-zoom divPrincipal" [routerLink]="['/' ,tipo, Pelicula.id]" >
+        <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{ Pelicula.poster_path }}" class="flex-shrink-0 me-3" >
+        <div>
+          <h5 class="mt-0 list-group-item-actio">
+            <span class="badge text-bg-primary">{{Pelicula.release_date | slice:0:4}} {{Pelicula.first_air_date | slice:0:4}}</span>
+            {{ Pelicula.title }}{{ Pelicula.name }}
+          </h5>
+          <p>{{ Pelicula.overview | lowercase | slice:0:140}}...</p>
+          <span class="badge text-bg-warning"> {{Pelicula.vote_average | number:"1.1-1"}}/10</span>
+        </div>
+        
+    </div>
+</div>
+
+    

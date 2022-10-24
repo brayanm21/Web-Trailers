@@ -1,0 +1,19 @@
+div {
+    cursor:pointer;
+}
+.divPrincipal {
+    height: 170px;
+}
+img {
+    height: 150px; width: 100px;
+}
+h5 {
+    color: white;
+}
+span {
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+p {
+    color:rgb(187, 183, 183);
+}
