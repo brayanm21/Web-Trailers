@@ -1,0 +1,29 @@
+#mask {
+	/*background-color: rgba(21, 22, 3, 0.7); */
+    background-color: rgba(0, 0, 0, 0.7); 
+    box-shadow: inset 0 0 5rem rgba(231, 247, 7, 0.4);
+}
+h1{
+	color: #fff;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+p{
+	color:rgb(187, 183, 183); 
+	font-size: 1.2rem; 
+	font-weight: 100;
+}
+.defaultHeart{
+    position: relative;
+    display: inline-block;
+    color:white;
+    font-size: 35px;
+}
+
+.paintedHeart{
+    position: absolute;
+      display: inline-block;
+      overflow: hidden;
+      color: #ffc107;
+}

@@ -10,7 +10,7 @@
         <span class="badge text-bg-warning">
           {{tendencia.vote_average | number:"1.1-1"}}/10</span>
         <p class="card-text padding: 50px">
-          {{ tendencia.overview | lowercase | slice:0:160}}...</p>
+          {{ tendencia.overview | lowercase | slice:0:130}}...</p>
         <button type="button" class="btn btn-light btn-sm" [routerLink]="['/' ,tipo, tendencia.id]" >
           <img src="https://img.icons8.com/nolan/24/play-button-circled.png"/> VER</button>
       </div>

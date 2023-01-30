@@ -13,8 +13,12 @@
             <span class="badge text-bg-primary">{{Pelicula.release_date | slice:0:4}} {{Pelicula.first_air_date | slice:0:4}}</span>
             {{ Pelicula.title }}{{ Pelicula.name }}
           </h5>
-          <p>{{ Pelicula.overview | lowercase | slice:0:140}}...</p>
-          <span class="badge text-bg-warning"> {{Pelicula.vote_average | number:"1.1-1"}}/10</span>
+          <p>{{ Pelicula.overview | lowercase | slice:0:120}}...</p>
+          <span class="position-absolute top-0 start-0 badge badge text-bg-warning">
+            {{Pelicula.vote_average | number:"1.1-1"}}/10
+          <span class="visually-hidden"></span>
+        </span>
+
         </div>
         
     </div>

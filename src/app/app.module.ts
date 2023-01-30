@@ -11,11 +11,11 @@ import { SharedModule } from './shared/shared.module';
 import { TrailersModule } from './trailers/trailers.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
-    
+    AppComponent,
   ],
   imports: [
     HttpClientModule,

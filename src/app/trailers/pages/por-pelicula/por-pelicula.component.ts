@@ -11,8 +11,8 @@ import { switchMap, tap } from 'rxjs';
 })
 export class PorPeliculaComponent {
 
-  tendenciaTexto: Tmdb[]=[] ;
-  tendenciaTrailer: Tmdb[]=[] ;
+  tendenciaTexto: Tmdb[]=[];
+  tendenciaTrailer: Tmdb[]=[];
   topPelicula: Tmdb[]=[];
   ids=1;
   
@@ -20,7 +20,6 @@ export class PorPeliculaComponent {
   constructor(private TrailersService:TrailersService,private activatedRoute: ActivatedRoute) {
     this.traerId();
     this.traerFunciones();
-    this.obtenerPuntuadaPelicula();
     //this.buscar();
    }
   traerFunciones(){

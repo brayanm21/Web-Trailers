@@ -9,8 +9,7 @@ import { Tmdb } from '../trailers/interfaces/trailers.interface';
 })
 export class TrailersService {
 
-  private height = screen.height;
-  private width = screen.width;
+
   private api = 'api_key=1ba88101867d3573366b2e4475e024c3';
   private language = '&language=es';
   public pages = 1;
@@ -24,6 +23,11 @@ export class TrailersService {
   getConexionEspañol(search: string, many: boolean = true): any {
     let url;
     url = `${this.urlMovieDb}${search}?${this.api}${this.language}${this.urlPage}${this.pages}`;
+    return this.http.get(url);
+  }
+  getConexionIngles(search: string, many: boolean = true): any {
+    let url;
+    url = `${this.urlMovieDb}${search}?${this.api}${this.languageEn}${this.urlPage}${this.pages}`;
     return this.http.get(url);
   }
 
@@ -64,12 +68,22 @@ export class TrailersService {
   }
   obtenerDatosIdPelicula(id:string): any {
     return this.getConexionEspañol(`/movie/${id}`).pipe(
-      map( (res: any) => res.results[0])
+      map( (res: any) => res)
     );
   }
   obtenerDatosIdSerie(id:string): any {
     return this.getConexionEspañol(`/tv/${id}`).pipe(
-      map( (res: any) => res.results[0])
+      map( (res: any) => res)
+    );
+  }
+  obtenerTrailerYoutube(id:string): any {
+    return this.getConexionIngles(`/movie/${id}/videos`).pipe(
+      map( (res: any) => res)
+    );
+  }
+  obtenerTrailerYoutubeSerie(id:string): any {
+    return this.getConexionIngles(`/tv/${id}/videos`).pipe(
+      map( (res: any) => res)
     );
   }
 }

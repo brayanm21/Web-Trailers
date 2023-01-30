@@ -1,0 +1,55 @@
+<hr><hr>
+
+<div class="bg-image" style="background-image: url('https://www.themoviedb.org/t/p/original{{dato.backdrop_path}}'); height: 110vh;">
+    <div class="container" class="mask" id="mask">
+        <div class="row" >
+            <div class="col-lg-4 ">
+                <div class="container mt-5">
+                    <div class="container d-flex justify-content-center">
+                        <img  class="rounded-4 hover-shadow" 
+                        src="https://image.tmdb.org/t/p/w220_and_h330_face/{{dato.poster_path}}" 
+                        width="45%">
+                    </div>
+                    <div class="container d-flex justify-content-center">
+                        <ngb-rating [(rate)]="dato.vote_average" >
+                            <ng-template let-fill="fill">
+                              <span class="defaultHeart" [class.filled]="fill === 100">
+                                <span class="paintedHeart" [style.width.%]="fill">♥</span>♥ <!--★-->
+                              </span>
+                            </ng-template>
+                        </ngb-rating>
+                    </div>
+                    <div class="container d-flex justify-content-center">
+                        <span class="badge text-bg-warning">
+                            Valoracion: {{dato.vote_average | number:"1.1-1"}}/10</span>
+                        <span class="badge text-bg-warning">{{ dato.release_date | slice:0:4}}</span>
+                    </div>
+                    <div class="container d-flex justify-content-center">
+                        <span class="badge text-bg-danger">Presupuesto: {{ dato.budget | currency}}</span>
+                        <span class="badge text-bg-success">Recaudacion: {{ dato.revenue | currency}}</span>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="col-lg d-flex justify-content-end mt-5 ms-3"  >
+                <div>
+                <h1>{{dato.title}} {{ dato.name }}</h1>
+                <span *ngIf="dato.runtime" class="badge text-bg-warning">{{ dato.runtime | number}} Minutos</span>
+                <p>{{ dato.overview | lowercase }}</p>
+                <p>generos: <small *ngFor="let item of dato.genres">{{item.name}}, </small></p>
+                
+                </div>
+            </div>
+
+        </div>
+        <hr>
+    </div>
+</div>
+<div class="container">
+    <div class="ratio ratio-16x9">
+        <iframe [src]="idvideo+idTrailerYoutube | safe" title="YouTube video" allowfullscreen></iframe>
+    </div>
+</div>
+

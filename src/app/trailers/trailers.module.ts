@@ -11,11 +11,15 @@ import { TopTrailerComponent } from './components/top-trailer/top-trailer.compon
 import { PorIdPeliculaComponent } from './pages/por-id-pelicula/por-id-pelicula.component';
 import { PorIdSerieComponent } from './pages/por-id-serie/por-id-serie.component';
 import { PaginadorComponent } from './components/paginador/paginador.component';
+import { IdTituloComponent } from './components/id-titulo/id-titulo.component';
+import { IdVideoComponent } from './components/id-video/id-video.component';
+import { SafePipe } from '../safe.pipe';
 
 
 
 @NgModule({
   declarations: [
+    SafePipe,
     PorPeliculaComponent,
     PorSerieComponent,
     SugerenciaTituloComponent,
@@ -23,7 +27,9 @@ import { PaginadorComponent } from './components/paginador/paginador.component';
     TopTrailerComponent,
     PorIdPeliculaComponent,
     PorIdSerieComponent,
-    PaginadorComponent
+    PaginadorComponent,
+    IdTituloComponent,
+    IdVideoComponent
   ],
   exports:[
     PorPeliculaComponent,
