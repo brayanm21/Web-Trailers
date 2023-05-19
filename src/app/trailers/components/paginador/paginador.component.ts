@@ -8,11 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PaginadorComponent implements OnInit {
 
+
+  @Input() dato: string =""; 
+
   pagina: number = 1;
   paginaMenos:number =1;
   paginaMas:number =1;
   suma:number =1;
-  
+
   constructor(private activatedRoute: ActivatedRoute) {
     this.traerId();
    }

@@ -31,9 +31,7 @@ export class PorPeliculaComponent {
   traerId(){
     this.activatedRoute.params
     .subscribe( ({id}) => {
-    console.log("treaer id",id);
     this.ids=id;
-    console.log("treaer id",this.ids);
     this.traerFunciones();
   })
   }
@@ -56,7 +54,6 @@ export class PorPeliculaComponent {
     this.TrailersService.obtenerMejorPuntuadaPelicula().subscribe(
       (res: any) => {
         this.topPelicula = res;
-        console.log(this.topPelicula);
       }
     );
   }

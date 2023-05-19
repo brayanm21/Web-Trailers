@@ -33,7 +33,6 @@ export class TrailersService {
 
   obtenerTendenciaTituloPelicula(id: number): any {
     this.pages= id;
-    console.log("id: ", id, "pages: ", this.pages)
     return this.getConexionEspañol(`/trending/movie/day`).pipe(
       map( (res: any) => res.results.slice(0,4))
     );

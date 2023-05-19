@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TrailersService } from '../../../services/trailers.service';
 import { Tmdb } from '../../interfaces/trailers.interface';
+import { last } from 'rxjs';
 
 @Component({
   selector: 'app-por-id-pelicula',
@@ -13,6 +14,7 @@ export class PorIdPeliculaComponent {
   peliculaPorID: Tmdb[]=[];
   id:string="";
   trailerYoutube:string="1";
+  lasts:Number=0;
 
   constructor(private TrailersService:TrailersService,private activatedRoute: ActivatedRoute) { 
     this.traerId();
@@ -22,7 +24,6 @@ export class PorIdPeliculaComponent {
   traerId(){
     this.activatedRoute.params
     .subscribe( ({id}) => {
-    console.log("treaer id",id);
     this.id=id;
     this.obtenerPeliculaPorID(id);
     this.obtenerTrailer(id);
@@ -33,15 +34,15 @@ export class PorIdPeliculaComponent {
     this.TrailersService.obtenerDatosIdPelicula(id).subscribe(
       (res: any) => {
         this.peliculaPorID = res;
+        console.log(res);
       }
     );
   }
   obtenerTrailer(id:string): any {
-    console.log("hola");
     this.TrailersService.obtenerTrailerYoutube(id).subscribe(
       (res: any) => {
-        this.trailerYoutube = res.results[0].key;
-        console.log("aca",this.trailerYoutube);
+        const [last] = res.results.slice(-2);
+        this.trailerYoutube = last.key;
       }
     );
   }

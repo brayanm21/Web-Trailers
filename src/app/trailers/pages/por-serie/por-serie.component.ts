@@ -20,7 +20,6 @@ export class PorSerieComponent implements OnInit {
     this.traerFunciones();
     this.obtenerPuntuadaSerie();
     
-    
    }
 
   ngOnInit(): void {
@@ -34,9 +33,7 @@ export class PorSerieComponent implements OnInit {
   traerId(){
     this.activatedRoute.params
     .subscribe( ({id}) => {
-    console.log("treaer id",id);
     this.ids=id;
-    console.log("treaer id",this.ids);
     this.traerFunciones();
   })
   }
@@ -45,7 +42,6 @@ export class PorSerieComponent implements OnInit {
     this.TrailersService.obtenerTendenciaTituloSerie(id).subscribe(
       (res: any) => {
         this.tendenciaTexto = res;
-        console.log("xdxdddxdxd",res , "La resolución de tu pantalla es: width" + screen.width + " x  heigth" + screen.height);
       }
     );
   }
@@ -53,7 +49,6 @@ export class PorSerieComponent implements OnInit {
     this.TrailersService.obtenerTendenciaTrailerSerie(id).subscribe(
       (res: any) => {
         this.tendenciaTrailer = res;
-        console.log("xdxdddxdxd",res , "La resolución de tu pantalla es: width" + screen.width + " x  heigth" + screen.height);
       }
     );
   }
@@ -61,7 +56,6 @@ export class PorSerieComponent implements OnInit {
     this.TrailersService.obtenerMejorPuntuadaSerie().subscribe(
       (res: any) => {
         this.topSerie = res;
-        console.log(this.topSerie);
       }
     );
   }

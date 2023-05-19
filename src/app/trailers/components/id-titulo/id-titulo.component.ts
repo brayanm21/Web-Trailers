@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-id-titulo',
   templateUrl: './id-titulo.component.html',
-  styleUrls: ['./id-titulo.component.css']
+  styleUrls: ['./id-titulo.component.css'],
 })
 export class IdTituloComponent implements OnInit {
 
@@ -13,10 +14,11 @@ export class IdTituloComponent implements OnInit {
   public idvideo = "https://www.youtube.com/embed/";
 
   constructor(config: NgbRatingConfig) { 
-    config.readonly = false;
+    config.readonly = true;
   }
 
   ngOnInit(): void {
+    
   }
-
+  
 }

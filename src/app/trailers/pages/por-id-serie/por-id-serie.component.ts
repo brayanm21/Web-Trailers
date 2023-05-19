@@ -21,7 +21,6 @@ export class PorIdSerieComponent{
   traerId(){
     this.activatedRoute.params
     .subscribe( ({id}) => {
-    console.log("treaer id",id);
     this.id=id;
     this.obtenerSeriePorID(id);
     this.obtenerTrailer(id);
@@ -37,11 +36,10 @@ export class PorIdSerieComponent{
     );
   }
   obtenerTrailer(id:string): any {
-    console.log("hola");
     this.TrailersService.obtenerTrailerYoutubeSerie(id).subscribe(
       (res: any) => {
-        this.trailerYoutube = res.results[0].key;
-        console.log("aca",this.trailerYoutube);
+        const [last] = res.results.slice(-1);
+        this.trailerYoutube = last.key;
       }
     );
   }

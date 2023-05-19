@@ -27,3 +27,10 @@ p{
       overflow: hidden;
       color: #ffc107;
 }
+#divTransparente {
+    background-color: transparent;
+}
+.divPrincipal {
+    height: 250px; width: 180px;
+}
+

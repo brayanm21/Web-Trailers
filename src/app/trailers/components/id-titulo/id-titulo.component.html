@@ -1,16 +1,14 @@
 <hr><hr>
-
-<div class="bg-image" style="background-image: url('https://www.themoviedb.org/t/p/original{{dato.backdrop_path}}'); height: 110vh;">
-    <div class="container" class="mask" id="mask">
+    <div class="container" >
         <div class="row" >
             <div class="col-lg-4 ">
                 <div class="container mt-5">
                     <div class="container d-flex justify-content-center">
                         <img  class="rounded-4 hover-shadow" 
-                        src="https://image.tmdb.org/t/p/w220_and_h330_face/{{dato.poster_path}}" 
-                        width="45%">
+                        src="https://image.tmdb.org/t/p/original/{{dato.poster_path}}" 
+                        width="100%">
                     </div>
-                    <div class="container d-flex justify-content-center">
+                    <div *ngIf="dato.vote_average" class="container d-flex justify-content-center">
                         <ngb-rating [(rate)]="dato.vote_average" >
                             <ng-template let-fill="fill">
                               <span class="defaultHeart" [class.filled]="fill === 100">
@@ -19,37 +17,119 @@
                             </ng-template>
                         </ngb-rating>
                     </div>
-                    <div class="container d-flex justify-content-center">
-                        <span class="badge text-bg-warning">
-                            Valoracion: {{dato.vote_average | number:"1.1-1"}}/10</span>
-                        <span class="badge text-bg-warning">{{ dato.release_date | slice:0:4}}</span>
-                    </div>
-                    <div class="container d-flex justify-content-center">
-                        <span class="badge text-bg-danger">Presupuesto: {{ dato.budget | currency}}</span>
-                        <span class="badge text-bg-success">Recaudacion: {{ dato.revenue | currency}}</span>
-                    </div>
-                    
                 </div>
-                
+
+                  <div class="d-grid gap-2">
+                    <span *ngIf="dato.vote_average; else elseVote_average" class="btn btn-outline-warning btn-sm">
+                            Valoracion: {{dato.vote_average | number:"1.1-1"}}/10</span>
+                    <ng-template #elseVote_average>
+                        <span class="btn btn-outline-warning btn-sm" >Valoracion: Proximamente</span>
+                    </ng-template>
+                            
+                    <span class="btn btn-outline-warning btn-sm">Año: {{ dato.release_date | slice:0:4}} {{ dato.first_air_date | slice:0:4}}</span>
+
+                    <span *ngIf=" dato.revenue; else elserevenue" class="btn btn-outline-success btn-sm" >Recaudacion: {{ dato.revenue | currency}}</span>
+                    <ng-template #elserevenue>
+                        <span class="btn btn-outline-success btn-sm" >Recaudacion: Desconocida</span>
+                    </ng-template>
+                    
+                    <span *ngIf=" dato.budget; else elsebudget" class="btn btn-outline-danger btn-sm">Presupuesto: {{ dato.budget | currency}}</span>
+                    <ng-template #elsebudget>
+                        <span class="btn btn-outline-danger btn-sm" >Presupuesto: Desconocido</span>
+                    </ng-template>
+
+                    <span *ngIf="dato.status=='Released'" class="btn btn-outline-primary btn-sm">Estrenada</span>
+                    <span *ngIf="dato.status=='Returning Series'" class="btn btn-outline-primary btn-sm">Emitiendoce</span>
+                    <span *ngIf="dato.status=='Ended'" class="btn btn-outline-primary btn-sm">Finalizada</span>
+                    <span *ngIf="dato.status=='Post Production'" class="btn btn-outline-primary btn-sm">Proximamente</span>
+                    
+                  </div>
+                  <br>
+                  <div class="row row-cols-sm-2 row-cols-md-2 justify-content-center">
+                    <div *ngFor="let item of dato.created_by" class="col-md divPrincipal" >
+                            <div *ngIf="item.profile_path" class="card mb-3 bg-image hover-overlay hover-zoom hover-shadow"  id="divTransparente">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{ item.profile_path  }}" alt="..."  >
+                                  <span class="position-absolute top-0 start-50 translate-middle-x badge  bg-primary bg-gradient">
+                                    {{item.name}}
+                                  <span class="visually-hidden"></span>
+                                </span>
+                              </div>
+                    </div>
+                  </div>
+
+                  <!-- opcional networks
+                    <div>
+                    <div *ngFor="let item of dato.networks">
+                        <img *ngIf="item.logo_path" src="https://image.tmdb.org/t/p/original/{{item.logo_path}}" width="50%" > 
+                        
+                      </div>
+                </div>
+                  -->
+                  
+
             </div>
-            
-            <div class="col-lg d-flex justify-content-end mt-5 ms-3"  >
+            <div class="col-lg  mt-5">
                 <div>
                 <h1>{{dato.title}} {{ dato.name }}</h1>
-                <span *ngIf="dato.runtime" class="badge text-bg-warning">{{ dato.runtime | number}} Minutos</span>
-                <p>{{ dato.overview | lowercase }}</p>
+                <span *ngIf="dato.runtime" class="badge text-bg-warning">{{ dato.runtime | number}}  Minutos</span>
+                <span *ngIf="dato.episode_run_time?.length" class="badge text-bg-warning">{{ dato.episode_run_time[0] | number}}  Minutos</span>
+                <p *ngIf="dato.overview">{{ dato.overview | lowercase }}</p>
                 <p>generos: <small *ngFor="let item of dato.genres">{{item.name}}, </small></p>
+
+                <div class="ratio ratio-16x9">
+                    <iframe [src]="idvideo+idTrailerYoutube | safe" title="YouTube video" allowfullscreen></iframe>
+                </div>
+                <hr>
+ 
+                <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+
+                  <!-- otra forma de hacerlo
+                    <ngb-panel title="GeeksforGeeks">
+                    <ng-template ngbPanelContent>
+                      Content1
+                    </ng-template>
+                  </ngb-panel>
+                  -->
+
+                  <ngb-panel *ngFor="let item of dato.seasons">
+                    <ng-template ngbPanelTitle>
+                      <span>Temporada #{{item.season_number}}</span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+
+                      <div class="card mb-3">
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img *ngIf="item.poster_path" src="https://image.tmdb.org/t/p/w220_and_h330_face/{{item.poster_path}}" class="img-fluid rounded-start">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title">{{item.name}}</h5>
+                              <p class="card-text" style="color:black; font-size: 16px">{{item.overview}}</p>
+                              <p class="card-text">
+                                <span *ngIf="item.air_date; else elseFecha" class="badge text-bg-warning">Fecha estreno: {{item.air_date}}</span>
+                                <ng-template #elseFecha>
+                                  <span  class="badge text-bg-warning">Mas Informacion Proximamente</span>
+                                </ng-template>
+                                <span *ngIf="item.episode_count" class="badge text-bg-warning">Episodios {{item.episode_count}}</span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-panel>
+
+                </ngb-accordion>
+
                 
                 </div>
             </div>
-
+            <hr>
+            
         </div>
         <hr>
     </div>
-</div>
-<div class="container">
-    <div class="ratio ratio-16x9">
-        <iframe [src]="idvideo+idTrailerYoutube | safe" title="YouTube video" allowfullscreen></iframe>
-    </div>
-</div>
+
 
