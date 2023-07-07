@@ -16,6 +16,7 @@ export class TrailersService {
   private urlPage = "&page=";
   private languageEn = '&language=en';
   private urlMovieDb = 'https://api.themoviedb.org/3';
+  private query = '&query='
 
   constructor(private http: HttpClient ) { }
 
@@ -28,6 +29,11 @@ export class TrailersService {
   getConexionIngles(search: string, many: boolean = true): any {
     let url;
     url = `${this.urlMovieDb}${search}?${this.api}${this.languageEn}${this.urlPage}${this.pages}`;
+    return this.http.get(url);
+  }
+  getConexionEspañolQuery(search: string, id: string, many: boolean = true ): any {
+    let url;
+    url = `${this.urlMovieDb}${search}?${this.api}${this.query}${id}${this.language}`;
     return this.http.get(url);
   }
 
@@ -83,6 +89,16 @@ export class TrailersService {
   obtenerTrailerYoutubeSerie(id:string): any {
     return this.getConexionIngles(`/tv/${id}/videos`).pipe(
       map( (res: any) => res)
+    );
+  }
+  obtenerBusquedaPelicula(id: string): any {
+    return this.getConexionEspañolQuery(`/search/movie` , id).pipe(
+      map( (res: any) => res.results.slice(0,18))
+    );
+  }
+  obtenerBusquedaSerie(id: string): any {
+    return this.getConexionEspañolQuery(`/search/tv` , id).pipe(
+      map( (res: any) => res.results.slice(0,18))
     );
   }
 }

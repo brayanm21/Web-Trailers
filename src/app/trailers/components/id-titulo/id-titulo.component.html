@@ -4,9 +4,14 @@
             <div class="col-lg-4 ">
                 <div class="container mt-5">
                     <div class="container d-flex justify-content-center">
-                        <img  class="rounded-4 hover-shadow" 
+                        <img *ngIf="dato.poster_path, else elseimg" class="rounded-4 hover-shadow" 
                         src="https://image.tmdb.org/t/p/original/{{dato.poster_path}}" 
                         width="100%">
+                        <ng-template #elseimg>
+                          <img class="rounded-4 hover-shadow" 
+                          src="http://imgfz.com/i/VAxngit.png" 
+                          width="100%">
+                        </ng-template>
                     </div>
                     <div *ngIf="dato.vote_average" class="container d-flex justify-content-center">
                         <ngb-rating [(rate)]="dato.vote_average" >
@@ -47,8 +52,12 @@
                   <br>
                   <div class="row row-cols-sm-2 row-cols-md-2 justify-content-center">
                     <div *ngFor="let item of dato.created_by" class="col-md divPrincipal" >
-                            <div *ngIf="item.profile_path" class="card mb-3 bg-image hover-overlay hover-zoom hover-shadow"  id="divTransparente">
-                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face{{ item.profile_path  }}" alt="..."  >
+                            <div  class="card mb-3 bg-image hover-overlay hover-zoom hover-shadow"  id="divTransparente">
+                                <img *ngIf="item.profile_path,else elseimg" src="https://www.themoviedb.org/t/p/w220_and_h330_face{{ item.profile_path  }}" alt="..."  >
+                                <ng-template #elseimg>
+                                  <img  src="http://imgfz.com/i/VAxngit.png" alt="..."  >
+                                </ng-template>
+                                
                                   <span class="position-absolute top-0 start-50 translate-middle-x badge  bg-primary bg-gradient">
                                     {{item.name}}
                                   <span class="visually-hidden"></span>
@@ -76,11 +85,10 @@
                 <p *ngIf="dato.overview">{{ dato.overview | lowercase }}</p>
                 <p>generos: <small *ngFor="let item of dato.genres">{{item.name}}, </small></p>
 
-                <div class="ratio ratio-16x9">
+                <div *ngIf="idTrailerYoutube!=1" class="ratio ratio-16x9">
                     <iframe [src]="idvideo+idTrailerYoutube | safe" title="YouTube video" allowfullscreen></iframe>
                 </div>
                 <hr>
- 
                 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
 
                   <!-- otra forma de hacerlo
@@ -127,7 +135,7 @@
                 </div>
             </div>
             <hr>
-            
+
         </div>
         <hr>
     </div>

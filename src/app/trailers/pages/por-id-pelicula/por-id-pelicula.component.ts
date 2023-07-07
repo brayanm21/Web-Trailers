@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TrailersService } from '../../../services/trailers.service';
 import { Tmdb } from '../../interfaces/trailers.interface';
-import { last } from 'rxjs';
 
 @Component({
   selector: 'app-por-id-pelicula',
@@ -34,7 +33,7 @@ export class PorIdPeliculaComponent {
     this.TrailersService.obtenerDatosIdPelicula(id).subscribe(
       (res: any) => {
         this.peliculaPorID = res;
-        console.log(res);
+        console.log(this.peliculaPorID);
       }
     );
   }

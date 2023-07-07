@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveOffcanvas, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'ngbd-offcanvas-firstfocus',
@@ -49,8 +51,13 @@ import { NgbActiveOffcanvas, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
   </ul>
 		<hr style="color: white;">
 		
-		<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+		<form  class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+        <input 
+        name="palabra_buscada"
+        
+        type="search" 
+        class="form-control form-control-dark text-bg-dark" 
+        placeholder="Search...">
       </form>
 
       <div class="text-center">
@@ -80,9 +87,16 @@ export class NgbdOffcanvasFirstFocus {
 
 export class NavbarComponent implements OnInit {
 
-  constructor(private offcanvasService: NgbOffcanvas) { }
+  palabra_buscada = "";
+
+  constructor(private offcanvasService: NgbOffcanvas, private _router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  buscar(){
+    console.log(this.palabra_buscada);
+    this._router.navigate(['/buscar/', this.palabra_buscada]);
   }
 
   openFirstFocus() {

@@ -4,6 +4,7 @@ import { PorIdPeliculaComponent } from './trailers/pages/por-id-pelicula/por-id-
 import { PorIdSerieComponent } from './trailers/pages/por-id-serie/por-id-serie.component';
 import { PorPeliculaComponent } from './trailers/pages/por-pelicula/por-pelicula.component';
 import { PorSerieComponent } from './trailers/pages/por-serie/por-serie.component';
+import { BuscarComponent } from './trailers/pages/buscar/buscar.component';
 
 
 
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: "serie/:id",
     component: PorIdSerieComponent,
+  },
+  {
+    path: "buscar/:id",
+    component: BuscarComponent,
   },
   
 

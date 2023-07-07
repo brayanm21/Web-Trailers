@@ -14,6 +14,7 @@ import { PaginadorComponent } from './components/paginador/paginador.component';
 import { IdTituloComponent } from './components/id-titulo/id-titulo.component';
 import { IdVideoComponent } from './components/id-video/id-video.component';
 import { SafePipe } from '../safe.pipe';
+import { BuscarComponent } from './pages/buscar/buscar.component';
 
 
 
@@ -29,7 +30,8 @@ import { SafePipe } from '../safe.pipe';
     PorIdSerieComponent,
     PaginadorComponent,
     IdTituloComponent,
-    IdVideoComponent
+    IdVideoComponent,
+    BuscarComponent
   ],
   exports:[
     PorPeliculaComponent,

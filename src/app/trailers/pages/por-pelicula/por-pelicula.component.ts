@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Tmdb } from '../../interfaces/trailers.interface';
 import { TrailersService } from '../../../services/trailers.service';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-por-pelicula',
